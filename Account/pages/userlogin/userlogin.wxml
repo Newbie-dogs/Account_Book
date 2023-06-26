@@ -1,0 +1,3 @@
+<!--pages/userlogin/userlogin.wxml-->
+<text>pages/userlogin/userlogin.wxml</text>
+<view class="container" bindtap="userlogin">login</view>

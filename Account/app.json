@@ -1,0 +1,42 @@
+{
+	"pages": [
+		"pages/userlogin/userlogin",
+		"pages/mingxi/mingxi",
+		"pages/tongji/tongji",
+		"pages/shezhi/shezhi",
+		"pages/addItem/addItem"
+	],
+	"window": {
+		"backgroundTextStyle": "light",
+		"navigationBarBackgroundColor": "#11ff11",
+		"navigationBarTitleText": "记一笔账",
+		"navigationBarTextStyle": "black"
+	},
+	"tabBar": {
+		"color": "#ffffff",
+		"selectedColor": "#ff8800",
+		"backgroundColor": "#11ff11",
+		"list": [
+			{
+				"pagePath": "pages/mingxi/mingxi",
+				"text": "明细",
+				"iconPath": "icons/清单.png",
+				"selectedIconPath": "icons/清单 - 选中.png"
+			},
+			{
+				"pagePath": "pages/tongji/tongji",
+				"text": "统计",
+				"iconPath": "icons/饼图 - 副本.png",
+				"selectedIconPath": "icons/饼图.png"
+			},
+			{
+				"pagePath": "pages/shezhi/shezhi",
+				"text": "设置",
+				"iconPath": "icons/设置 - 副本.png",
+				"selectedIconPath": "icons/设置.png"
+			}
+		]
+	},
+	"style": "v2",
+	"sitemapLocation": "sitemap.json"
+}

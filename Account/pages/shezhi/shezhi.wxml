@@ -1,0 +1,5 @@
+<!--pages/Settings/Settings.wxml-->
+<view class="container">设置</view>
+<view style="border: 1rpx solid black;height: auto;width: auto;" bindtap="gotoUserLogin">
+	用户登录
+</view>

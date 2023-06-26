@@ -1,0 +1,46 @@
+<!--pages/mingxi/mingxi.wxml-->
+<view class="TotalAccount" style="left: 35rpx;">
+	<text>总收入：{{totalincome}}</text>
+</view>
+<view style="display: inline-flex; width: 20rpx;"></view>
+<view class="TotalAccount" style="right: 35rpx;">
+	<text>总支出：{{totalpayment}}</text>
+</view>
+<!-- 明细列表，用一个scroll-view包装 -->
+<view style="position: relative;margin-top: 150rpx;left: 25rpx;width: 700rpx;">
+	<scroll-view scroll-y="ture" style="height: 850rpx;"
+		refresher-enabled="true" refresher-triggered="{{triggered}}" bindrefresherrefresh="onScrollRefresh">
+		<!-- 遍历查询到的数组进行明细显示 -->
+		<view wx:for="{{datalist}}">
+			<view class="details">
+				<image class="detailImage" src="../../icons/{{item.type}}.png"></image>
+				<text style="position: relative;margin-left: 20rpx;display: inline;" wx:if="{{item.is_payment}}">
+					-{{item.money}}  date:{{item.date}}
+				</text>
+				<text style="position: relative;margin-left: 20rpx;display: inline-flex;" wx:else>
+					+{{item.money}}  date:{{item.date}}
+	display: inline;
+				</text>
+			</view>
+		</view>
+		<view style="border-top: 1rpx solid #949494;"></view>
+	</scroll-view>
+</view>
+<!-- 增加记录按钮 -->
+<view bindtap="addItem">
+	<image class="addImage" src="../../icons/addicon.png"></image>
+</view>
+<!-- 弹窗蒙版 -->
+<view class="model" catchtouchmove='preventTouchMove' wx:if='{{showModal}}'></view>
+<view class="modalDlg" catchtouchmove='preventTouchMove' wx:if='{{showModal}}'>
+  <view class='windowRow'>
+    <text class='modalTitle'>增加记录</text>
+    <view class='back' bindtap='back'>
+			<image src="../../icons/close.png" class='modalClose'></image>
+		</view>
+  </view>
+  <view style="width:100%" class='wishName'>
+    <input style="width:100%" bindinput='wish_put' placeholder='请输入姓名' placeholder-class="holder_cls" class='wish_put'></input>
+  </view>
+  <view style="width:94%" class='modalConfirm' bindtap='name'>确定</view>
+</view>

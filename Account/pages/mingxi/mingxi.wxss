@@ -1,0 +1,107 @@
+/* pages/mingxi/mingxi.wxss */
+.TotalAccount{
+	position: fixed;
+	top: 50rpx;
+	height: 120rpx;
+	width: 330rpx;
+	border: 1rpx solid #000000;
+	border-radius: 10rpx;
+	text-align: center;
+	display: inline-flex;
+}
+/* 明细样式 */
+.details{
+	position: relative;
+	border-top: 1rpx solid #949494;
+	height: 100rpx;
+}
+/* 增加记录按钮样式 */
+.addImage{
+	position: fixed;
+	bottom: 4%;
+	right: 4%;
+	width: 100rpx;
+	height: 100rpx;
+}
+/* 明细图案样式 */
+.detailImage{
+	position: relative;
+	margin-top: 25rpx;
+	width: 60rpx;
+	height: 60rpx;
+	display: inline-block;
+	vertical-align:top;/*文字居中*/
+	/* float: left; */
+}
+/* 弹窗样式 */
+.model{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  background: #000;
+  z-index: 999;
+  opacity: 0.5;
+  top: 0;
+  left:0;
+}
+.modalDlg{
+  width: 80%;
+  position: fixed;
+  top:300rpx;
+  left: 0;
+  right: 0;
+  z-index: 9999;
+  margin: 0 auto;
+  padding: 55rpx;
+  background-color: #fff;
+  border-radius: 20rpx;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.modalClose{
+	height: 40rpx;
+	width: 40rpx;
+
+}
+.windowRow{
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 15rpx;
+  width: 100%;
+}
+.modalTitle{
+  font-size: 42rpx;
+}
+.back{
+  text-align: center;
+  color: #f0a500;
+  font-size: 30rpx;
+}
+.wishName{
+  width: 100%;
+  justify-content: center;
+  flex-direction: row;
+  display: flex;
+  margin: 40rpx 0rpx;
+}
+.wish_put{
+  width: 100%;
+  border: #ededef 1rpx solid;
+  background-color: #f6f7fb;
+  border-radius: 12rpx;
+  padding: 30rpx 20rpx;
+  margin: 20rpx 0rpx;
+}
+.holder_cls{
+  color: #909399;
+}
+.modalConfirm{
+  background-color: #fec600;
+  text-align: center;
+  border-radius: 50rpx;
+  padding: 25rpx;
+  color: white;
+}
