@@ -4,5 +4,5 @@
   <view class="button1"><button bindtap="gotoPageas">账户设置</button></view>
   <view class="button1"><button bindtap="gotoPageqs">限额设置</button></view>
   <view class="button1"><button bindtap="gotoPagehl">帮助</button></view>
-  <view class="button2"><button bindtap="gotoPageindex">退出登录</button></view>
+  <view class="button2"><button type="warn" bindtap="gotoPageindex">退出登录</button></view>
 </view>

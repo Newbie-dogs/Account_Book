@@ -1,15 +1,23 @@
 <!--pages/userRegister/userRegister.wxml-->
 <view class="title">先注册一个账号吧！</view>
-<view class="input1">
-<text style="display: inline-flex;">用户名：</text><input value="" type="text" style="display: inline-flex;"></input>
-</view>
-<view class="input1">
-<text style="display: inline-flex;">账号：</text><input value="" type="number" style="display: inline-flex;"></input>
-</view>
-<view class="input1">
-<text style="display: inline-flex;">密码：</text><input value="" type="password" style="display: inline-flex;"></input>
-</view>
-<view class="input1">
-<text style="display: inline-flex;">确认密码：</text><input value="" type="password" style="display: inline-flex;"></input>
-</view>
-<view class="button1"><button bindtap="gotoPageul">注册</button></view>
+<form bindsubmit="userRegister">
+  <view class="input1">
+    <text style="display: inline-flex;">昵称：</text>
+    <input name="nickname" type="text" style="display: inline-flex;" />
+  </view>
+  <view class="input1">
+    <text style="display: inline-flex;">账号：</text>
+    <input name="username" type="text" style="display: inline-flex;" />
+  </view>
+  <view class="input1">
+    <text style="display: inline-flex;">密码：</text>
+    <input name="password" type="password" style="display: inline-flex;" />
+  </view>
+  <view class="input1">
+    <text style="display: inline-flex;">确认密码：</text>
+    <input name="confirmPassword" type="password" style="display: inline-flex;" />
+  </view>
+  <view class="button1">
+    <button form-type="submit">注册</button>
+  </view>
+</form>

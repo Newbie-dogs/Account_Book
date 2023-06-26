@@ -65,34 +65,23 @@ Page({
   },
 
   gotoPageas(){
-    wx.navigateTo({
-      url: '../accountSettings/accountSettings',
-      success:console.log('success'),
-      fail:console.log('failed'),
-    })
+    wx.navigateTo({url: '../accountSettings/accountSettings'})
   },
   gotoPageqs(){
-    wx.navigateTo({
-      url: '../quotaSettings/quotaSettings',
-      success:console.log('success'),
-      fail:console.log('failed'),
-    })
+    wx.navigateTo({url: '../quotaSettings/quotaSettings'})
   },
  
   gotoPagehl(){
-    wx.navigateTo({
-      url: '../help/help',
-      success:console.log('success'),
-      fail:console.log('failed'),
-    })
+    wx.navigateTo({url: '../help/help'})
   },
-   gotoPageindex(){
-    wx.navigateTo({
-      url: '../index/index',
-      success:console.log('success'),
-      fail:console.log('failed'),
-    })
-  }
+    gotoPageindex(){
+      wx.showModal({
+        content: '确定要退出吗？',
+        complete: (res) => {
+          if (res.confirm) wx.redirectTo({url: '../index/index'})
+        }
+      })
+    }
 
 
 })

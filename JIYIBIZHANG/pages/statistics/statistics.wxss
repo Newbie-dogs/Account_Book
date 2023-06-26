@@ -11,8 +11,8 @@
   padding: 30rpx 0;
 }
 .echarts{
-  width: 800rpx;
-  height: 800rpx;
+  width: 750rpx;
+  height: 500rpx;
 }
 ec-canvas{
   width: 100%;

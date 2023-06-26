@@ -1,9 +1,16 @@
 <!--pages/userLogin/userLogin.wxml-->
-<view class="title"><text>登陆</text></view>
-<view class="input1">
-  <text style="display: inline-flex;">账号：</text><input value="" type="number" style="display: inline-flex;"></input>
-</view>
-<view class="input1">
-  <text style="display: inline-flex;">密码：</text><input value="" type="password" style="display: inline-flex;"></input>
-</view>
-<view class="button1"><button bindtap="gotoPagelist">原神，启动！</button></view>
+<view class="title"><text>登录</text></view>
+<!-- 表单 -->
+<form bindsubmit="userLogin">
+  <view class="input1">
+    <text style="display: inline-flex;">账号：</text>
+    <input name="username" type="number" maxlength="32" style="display: inline-flex;" />
+  </view>
+  <view class="input1">
+    <text style="display: inline-flex;">密码：</text>
+    <input name="password" type="password" maxlength="32" style="display: inline-flex;" />
+  </view>
+  <view class="button1">
+    <button form-type="submit">原神，启动！</button>
+  </view>
+</form>

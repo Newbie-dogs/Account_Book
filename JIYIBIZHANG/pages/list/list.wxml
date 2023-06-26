@@ -1,19 +1,31 @@
-<view class="title" >明细界面</view>
-<view class="headtitle">
-  <view class="headtitle"><text decode="true">总收入:&nbsp;&nbsp;&nbsp;&nbsp;</text></view>
-  <view class="headtitleblank"><text decode="true">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text> </view>
-  <view class="headtitle"><text decode="true">总支出:&nbsp;&nbsp;&nbsp;&nbsp;</text></view>
-  <view class="headtitleblank"><text decode="true">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text> </view>
+<!--明细页面-->
+<view class="TotalAccount" style="left: 35rpx;">
+	<text>总收入：{{totalincome}}</text>
 </view>
-
-<view>
-<view class="lists">6.24 收入一万 类型：工资</view>
-<view class="lists">6.25 收入两万 类型：工资</view>
-<view class="lists">6.26 收入三万 类型：工资</view>
-<view class="lists">6.27 收入四万 类型：工资</view>
-<view class="lists">6.28 收入五万 类型：工资</view>
-<view class="lists">6.29 收入六万 类型：工资</view>
+<view style="display: inline-flex; width: 20rpx;"></view>
+<view class="TotalAccount" style="right: 35rpx;">
+	<text>总支出：{{totalpayment}}</text>
 </view>
-<view>
-<button class="bottomsize" plain="true" style="width:60rpx" ><image class="imagesize" src='../../icons/添加.png' mode="aspectFit"></image></button>
+<!-- 明细列表，用一个scroll-view包装 -->
+<view style="position: relative;margin-top: 150rpx;left: 25rpx;width: 700rpx;">
+	<scroll-view scroll-y="ture" style="height: 850rpx;"
+		refresher-enabled="true" refresher-triggered="{{triggered}}" bindrefresherrefresh="onScrollRefresh">
+		<!-- 遍历查询到的数组进行明细显示 -->
+		<view wx:for="{{datalist}}">
+			<view class="details">
+				<image class="detailImage" src="../../icons/{{item.type}}.png"></image>
+				<text style="position: relative;margin-left: 20rpx;display: inline;" wx:if="{{item.is_payment}}">
+					-{{item.money}}  date:{{item.date}}
+				</text>
+				<text style="position: relative;margin-left: 20rpx;display: inline;" wx:else>
+					+{{item.money}}  date:{{item.date}}
+				</text>
+			</view>
+		</view>
+		<view style="border-top: 1rpx solid #949494;"></view>
+	</scroll-view>
+</view>
+<!-- 增加记录按钮 -->
+<view bindtap="addItem">
+	<image class="addImage" src="../../icons/添加.png"></image>
 </view>
