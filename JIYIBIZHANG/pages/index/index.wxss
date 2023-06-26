@@ -1,0 +1,12 @@
+/**index.wxss**/
+.input1{
+  text-align: center;
+  padding: 30rpx 0;
+}
+.title{
+  text-align: center;
+  font-size: large;
+  padding: 50rpx 0;
+  size: initial;
+ 
+}

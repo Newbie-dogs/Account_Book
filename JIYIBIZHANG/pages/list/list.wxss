@@ -1,0 +1,41 @@
+/* pages/list/list.wxss */
+.title{
+  text-align: center;
+  font-size: xx-large;
+  font-style:italic;
+  font-weight: bolder;
+  height: 100%;
+  justify-content: space-between;
+  padding: 50rpx 0;
+  background-color: rgb(90, 150, 245);
+}
+.lists{
+  text-align: center;
+  font-size: medium;
+  justify-content: space-between;
+  padding: 20rpx 0;
+}
+.headtitle{
+  text-align: center;
+  font-size: large;
+  display: flex;
+  padding: 30rpx 0;
+  background-color: rgb(96, 141, 224);
+}
+.headtitleblank{
+  text-align: center;
+  font-size: large;
+  display: flex;
+  background-color: rgb(255, 255, 255);
+}
+
+.bottomsize{
+  width: 60rpx;
+  height:100rpx;
+}
+
+.imagesize{
+  width: 100%;
+  height: auto;
+  position: relative;
+}

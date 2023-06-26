@@ -1,0 +1,49 @@
+{
+  "pages": [
+    "pages/index/index",
+    "pages/list/list",
+    "pages/setting/setting",
+    "pages/statistics/statistics",
+    "pages/accountSettings/accountSettings",
+    "pages/quotaSettings/quotaSettings",
+    "pages/help/help",
+    "pages/userLogin/userLogin",
+    "pages/userRegister/userRegister"
+ 
+  ],
+  "window": {
+    "backgroundTextStyle": "dark",
+    "navigationBarBackgroundColor": "#11ff11",
+    "navigationBarTitleText": "记一笔帐",
+    "navigationBarTextStyle": "black"
+  },
+  "tabBar": {
+    "color": "red",
+    "selectedColor": "#33a3dc",
+    "backgroundColor": "#11ff11",
+    "borderStyle": "black",
+    "position": "bottom",
+    "list": [
+      {
+        "pagePath": "pages/list/list",
+        "text": "明细",
+        "iconPath": "/icons/清单 - 选中.png",
+        "selectedIconPath": "/icons/清单 - 选中.png"
+      },
+      {
+        "pagePath": "pages/statistics/statistics",
+        "text": "统计",
+        "iconPath": "/icons/饼图.png",
+        "selectedIconPath": "/icons/饼图.png"
+      },
+      {
+        "pagePath": "pages/setting/setting",
+        "text": "设置",
+        "iconPath": "/icons/设置.png",
+        "selectedIconPath": "/icons/设置.png"
+      }
+    ]
+  },
+  "style": "v2",
+  "sitemapLocation": "sitemap.json"
+}

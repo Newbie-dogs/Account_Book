@@ -1,0 +1,16 @@
+/* pages/userRegister/userRegister.wxss */
+.button1{
+  padding: 30rpx 0;
+}
+.input1{
+  padding: 5%;
+  width: fit-content;
+  height: fit-content;
+}
+.title{
+  text-align: center;
+  font-size: large;
+  padding: 50rpx 0;
+  size: initial;
+ 
+}

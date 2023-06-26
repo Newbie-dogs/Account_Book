@@ -1,0 +1,14 @@
+<!--pages/accountSettings/accountSettings.wxml-->
+<view class="title">账户信息</view>
+<view class="title1">
+  <text style="display: inline-flex;">账号：</text>
+</view>
+<view class="title1">
+  <text style="display: inline-flex;">用户名：</text>
+  <button  style="width: 26%; display: inline-flex;" >修改</button>
+</view>
+<view class="title1">
+  <text style="display: inline-flex;">密码：</text>
+  <button  style="width: 26%; display: inline-flex;" >修改</button>
+</view>
+

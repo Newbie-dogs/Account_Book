@@ -1,0 +1,16 @@
+/* pages/userLogin/userLogin.wxss */
+.button1{
+  padding: 100rpx 0;
+}
+.input1{
+  padding: 5%;
+  width: fit-content;
+  height: fit-content;
+}
+.title{
+  text-align: center;
+  font-size: large;
+  padding: 50rpx 0;
+  size: initial;
+ 
+}

@@ -1,0 +1,9 @@
+<!--pages/userLogin/userLogin.wxml-->
+<view class="title"><text>登陆</text></view>
+<view class="input1">
+  <text style="display: inline-flex;">账号：</text><input value="" type="number" style="display: inline-flex;"></input>
+</view>
+<view class="input1">
+  <text style="display: inline-flex;">密码：</text><input value="" type="password" style="display: inline-flex;"></input>
+</view>
+<view class="button1"><button bindtap="gotoPagelist">原神，启动！</button></view>

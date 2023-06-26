@@ -1,0 +1,15 @@
+/* pages/accountSettings/accountSettings.wxss */
+.title{
+  text-align: center;
+  font-size: large;
+  padding: 20rpx 0;
+}
+.title1{
+  text-align:justify;
+  font-size: medium;
+  padding: 20rpx 0;
+}
+.button{
+  text-align: center;
+  position:relative;
+}

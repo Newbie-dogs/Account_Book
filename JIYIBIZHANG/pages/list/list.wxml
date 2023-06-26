@@ -1,0 +1,19 @@
+<view class="title" >明细界面</view>
+<view class="headtitle">
+  <view class="headtitle"><text decode="true">总收入:&nbsp;&nbsp;&nbsp;&nbsp;</text></view>
+  <view class="headtitleblank"><text decode="true">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text> </view>
+  <view class="headtitle"><text decode="true">总支出:&nbsp;&nbsp;&nbsp;&nbsp;</text></view>
+  <view class="headtitleblank"><text decode="true">&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;</text> </view>
+</view>
+
+<view>
+<view class="lists">6.24 收入一万 类型：工资</view>
+<view class="lists">6.25 收入两万 类型：工资</view>
+<view class="lists">6.26 收入三万 类型：工资</view>
+<view class="lists">6.27 收入四万 类型：工资</view>
+<view class="lists">6.28 收入五万 类型：工资</view>
+<view class="lists">6.29 收入六万 类型：工资</view>
+</view>
+<view>
+<button class="bottomsize" plain="true" style="width:60rpx" ><image class="imagesize" src='../../icons/添加.png' mode="aspectFit"></image></button>
+</view>

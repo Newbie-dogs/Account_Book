@@ -1,0 +1,12 @@
+<!--pages/quotaSettings/quotaSettings.wxml-->
+<view class="title">设置限额，理智消费！</view>
+<view class="title">请输入限额周期</view>
+<view class="input1">
+<text style="display: inline-flex;">周期：</text><input value="" type="text" style="display: inline-flex;"></input>
+</view>
+<view class="title">请输入金额</view>
+<view class="input1">
+<text style="display: inline-flex;">金额：</text><input value="" type="number" style="display: inline-flex;"></input>
+</view>
+<view class="button1"><button bindtap="gotoPageset">确认设置</button></view>
+

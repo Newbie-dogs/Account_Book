@@ -1,0 +1,22 @@
+/* pages/quotaSettings/quotaSettings.wxss */
+.button1{
+  padding: 30rpx 0;
+}
+.input1{
+  text-align: center;
+  padding: 3%;
+  width: fit-content;
+  height: fit-content;
+}
+.title{
+  text-align: center;
+  font-size: large;
+  padding: 20rpx 0;
+}
+.title1{
+  text-align: center;
+  font-size: large;
+  padding: 20rpx 0;
+  size: initial;
+ 
+}
