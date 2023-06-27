@@ -11,49 +11,110 @@ Page({
 		showModal: false,
     totalincome:0,
 		totalpayment:0,
-		datalist:[],
+    datalist:[],
+    accountDetails:{
+      money: 0,
+      is_payment: false,
+      date: "",
+      type: "",
+      mood: "",
+      notes: "",
+      _id: ""
+    }
 	},
-
-	// 增加一条记录-弹窗
+	// 增加一条记录
 	addItem: function(){
-		console.log('增加一条记录');
-		this.setData({showModal:true});
-	},
-	//点击关闭按钮隐藏
-	back:function(){
-		this.setData({showModal:false})
-	},
-	/*获取input输入值*/
-	wish_put:function(e){
-		this.setData({
-			textV:e.detail.value
-		})
-	},
-	/*点击确定按钮获取input值并且关闭弹窗*/
-	name:function(){
-		console.log(this.data.textV)
-		this.setData({
-			showModal:false,
-			name:this.data.textV
-		})
-	},
-	// 监听用户下拉刷新
+    console.log('增加一条记录');
+    
+  },
+  
+  //  点击明细条目弹窗显示详情
+  showDetails: function(e){
+    this.setData({
+      showModal:true,
+      accountDetails:{
+        money: e.target.dataset.res.money,
+        is_payment: e.target.dataset.res.is_payment,
+        mood: e.target.dataset.res.mood,
+        notes: e.target.dataset.res.notes,
+        type: e.target.dataset.res.type,
+        date: e.target.dataset.res.date,
+        _id: e.target.dataset.res._id
+      }
+    })
+  },
+	//  点击关闭按钮隐藏
+  detailsBack:function(){this.setData({showModal:false})},
+  //  点击删除按钮删除记录
+  detailsDelete: function(){
+    wx.showModal({
+      title: '确定要删除此条记录吗？',
+      complete: (res) => {
+        if (res.cancel) {}
+        if (res.confirm) {
+          var _this = this;
+          tb.doc(_this.data.accountDetails._id).remove().then(res=>{console.log("deleted!")})
+            .catch(err=>{console.log("failed!")})
+          _this.setData({showModal:false})
+          tb.where({username:app.globalData.username}).get().then(res=>{
+            _this.setData({datalist:res.data})
+          }).catch(err=>{console.log('查询记录失败')});
+          (function (){
+            var tempincome = 0,temppayment = 0;
+            for(var i=0;i<_this.data.datalist.length;i++)
+              if(_this.data.datalist[i].is_payment) temppayment+=_this.data.datalist[i].money;
+              else tempincome+=_this.data.datalist[i].money;
+            _this.setData({totalincome: tempincome,totalpayment: temppayment})
+          })()
+        }
+      }
+    })
+  },
+  
+	//  监听用户下拉刷新
 	onScrollRefresh: function () {
-		var that=this;
-		// 调用刷新数据函数
-		setTimeout(function(){that.setData({triggered: false,})},1000);
+    var _this = this;
+    // 延时1秒
+		setTimeout(function(){_this.setData({triggered: false,})},1000);
+		// 重新获取数据
+	  tb.where({username:app.globalData.username}).get().then(res=>{
+		  _this.setData({datalist:res.data})
+    }).catch(err=>{console.log('查询记录失败')});
+    (function (){
+      var tempincome = 0, temppayment = 0;
+      for(var i=0;i<_this.data.datalist.length;i++)
+        if(_this.data.datalist[i].is_payment) temppayment+=_this.data.datalist[i].money;
+        else tempincome+=_this.data.datalist[i].money;
+      _this.setData({totalincome: tempincome,totalpayment: temppayment})
+    })()
 	},
 
-/*生命周期函数--监听页面加载*/onLoad(options) {
+/*生命周期函数--监听页面加载*/onLoad(options) {},
+/*生命周期函数--监听页面初次渲染完成*/onReady() {
+  var _this = this;
 	tb.where({username:app.globalData.username}).get().then(res=>{
-		this.setData({datalist:res.data})
-	}).catch(err=>{console.log('查询记录失败')})
+		_this.setData({datalist:res.data})
+  }).catch(err=>{console.log('查询记录失败')});
+  (function (){
+    var tempincome = 0, temppayment = 0;
+    for(var i=0;i<_this.data.datalist.length;i++)
+      if(_this.data.datalist[i].is_payment) temppayment+=_this.data.datalist[i].money;
+      else tempincome+=_this.data.datalist[i].money;
+    _this.setData({totalincome: tempincome,totalpayment: temppayment})
+  })()
 },
-/*生命周期函数--监听页面初次渲染完成*/onReady() {},
 /*生命周期函数--监听页面显示*/onShow() {
-	tb.where({username:app.globalData.username}).get().then(res=>{
-		this.setData({datalist:res.data})
-	}).catch(err=>{console.log('查询记录失败')})
+  var _this = this;
+  tb.where({username:app.globalData.username}).get().then(res=>{
+    _this.setData({datalist:res.data})
+  }).catch(err=>{console.log('查询记录失败')});
+  (function (){
+    var tempincome = 0, temppayment = 0;
+    for(var i=0;i<_this.data.datalist.length;i++)
+      if(_this.data.datalist[i].is_payment) temppayment+=_this.data.datalist[i].money;
+      else tempincome+=_this.data.datalist[i].money;
+    _this.setData({totalincome: tempincome,totalpayment: temppayment})
+  })()
 },
 /*生命周期函数--监听页面隐藏*/onHide() {},
 /*生命周期函数--监听页面卸载*/onUnload() {},

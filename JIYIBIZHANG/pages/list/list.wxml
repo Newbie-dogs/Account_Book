@@ -1,10 +1,10 @@
 <!--明细页面-->
 <view class="TotalAccount" style="left: 35rpx;">
-	<text>总收入：{{totalincome}}</text>
+	<text>总收入：￥{{totalincome}}</text>
 </view>
 <view style="display: inline-flex; width: 20rpx;"></view>
 <view class="TotalAccount" style="right: 35rpx;">
-	<text>总支出：{{totalpayment}}</text>
+	<text>总支出：￥{{totalpayment}}</text>
 </view>
 <!-- 明细列表，用一个scroll-view包装 -->
 <view style="position: relative;margin-top: 150rpx;left: 25rpx;width: 700rpx;">
@@ -12,13 +12,13 @@
 		refresher-enabled="true" refresher-triggered="{{triggered}}" bindrefresherrefresh="onScrollRefresh">
 		<!-- 遍历查询到的数组进行明细显示 -->
 		<view wx:for="{{datalist}}">
-			<view class="details">
+			<view class="details" bindtap="showDetails" data-res="{{item}}">
 				<image class="detailImage" src="../../icons/{{item.type}}.png"></image>
 				<text style="position: relative;margin-left: 20rpx;display: inline;" wx:if="{{item.is_payment}}">
-					-{{item.money}}  date:{{item.date}}
+					- ￥{{item.money}}  date:{{item.date}}
 				</text>
 				<text style="position: relative;margin-left: 20rpx;display: inline;" wx:else>
-					+{{item.money}}  date:{{item.date}}
+					+ ￥{{item.money}}  date:{{item.date}}
 				</text>
 			</view>
 		</view>
@@ -28,4 +28,23 @@
 <!-- 增加记录按钮 -->
 <view bindtap="addItem">
 	<image class="addImage" src="../../icons/添加.png"></image>
+</view>
+<!-- 详情弹窗蒙版 -->
+<view class="model" catchtouchmove='preventTouchMove' wx:if='{{showModal}}'></view>
+<!-- 详情弹窗 -->
+<view class="modalDlg" catchtouchmove='preventTouchMove' wx:if='{{showModal}}'>
+  <view class='windowRow'>
+    <text class='modalTitle'>详情</text>
+    <view class='back' bindtap='detailsDelete'>
+			<image src="../../icons/删除.png" class='modalClose'></image>
+		</view>
+  </view>
+  <view style="width:100%" class='wishName'>
+    <view wx:if='{{accountDetails.is_payment}}'>{{accountDetails.type}}支出：￥{{accountDetails.money}}</view>
+    <view wx:else>{{accountDetails.type}}收入：￥{{accountDetails.money}}</view>
+    <view>日期：{{accountDetails.date}}</view>
+    <view>心情：{{accountDetails.mood}}</view>
+    <view>备注：{{accountDetails.notes}}</view>
+  </view>
+  <view style="width:50%" class='modalConfirm' bindtap='detailsBack'>确定</view>
 </view>

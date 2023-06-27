@@ -13,15 +13,7 @@
 .details{
 	position: relative;
 	border-top: 1rpx solid #949494;
-	height: 100rpx;
-}
-/* 增加记录按钮样式 */
-.addImage{
-	position: fixed;
-	bottom: 4%;
-	right: 4%;
-	width: 100rpx;
-	height: 100rpx;
+	height: 150rpx;
 }
 /* 明细图案样式 */
 .detailImage{
@@ -32,6 +24,14 @@
 	display: inline-block;
 	vertical-align:top;/*文字居中*/
 	/* float: left; */
+}
+/* 增加记录按钮样式 */
+.addImage{
+	position: fixed;
+	bottom: 4%;
+	right: 4%;
+	width: 100rpx;
+	height: 100rpx;
 }
 /* 弹窗样式 */
 .model{
@@ -73,7 +73,9 @@
   width: 100%;
 }
 .modalTitle{
-  font-size: 42rpx;
+  font-size: 50rpx;
+  font-weight: bold;
+  margin-left: 40%;
 }
 .back{
   text-align: center;
@@ -84,7 +86,7 @@
   width: 100%;
   justify-content: center;
   flex-direction: row;
-  display: flex;
+  /* display: flex; */
   margin: 40rpx 0rpx;
 }
 .wish_put{
