@@ -1,0 +1,45 @@
+<!--pages/add/add.wxml-->
+<view class="title">今天你记账了没?</view>
+  <view class="Expenditure">
+    <radio-group bindchange="mychange">
+      <view class="btn">
+          支出<radio value="outcome" color="green" checked="true"></radio>
+          收入<radio value="income" color="green"></radio>
+      </view>
+    </radio-group>
+  </view>
+<form bindsubmit="adding">
+  <view class="input">
+    <text style="display: inline-flex;">金额：</text>
+    <input name="amount" type="number" style="display: inline-flex;" />
+  </view>
+  <view>
+    
+  <view class="section__title">时间</view>
+    <picker mode="date" value="{{date}}" start="2000-00-00" end="2100-00-00"      bindchange="bindDateChange">
+      <view class="picker">
+       当前选择: {{date}}
+     </view>
+    </picker>
+    <view class="section__title">类型</view>
+    <picker bindchange="bindPickerChange" value="{{type}}" range="{{array}}">
+      <view class="picker">
+        当前选择：{{array[type]}}
+      </view>
+    </picker>
+ 
+  </view>
+  
+  <view class="input">
+    <text style="display: inline-flex;">心情：</text>
+    <input name="motion" type="text" style="display: inline-flex;" />
+  </view>
+  <view class="input">
+    <text style="display: inline-flex;">备注：</text>
+    <input name="remark" type="text" style="display: inline-flex;" />
+  </view>
+  <view class="button">
+    <button form-type="submit">记录！</button>
+  </view>
+</form>
+

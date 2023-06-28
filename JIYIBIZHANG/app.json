@@ -1,5 +1,6 @@
 {
   "pages": [
+ 
     "pages/index/index",
     "pages/list/list",
     "pages/setting/setting",
@@ -8,8 +9,10 @@
     "pages/quotaSettings/quotaSettings",
     "pages/help/help",
     "pages/userLogin/userLogin",
-    "pages/userRegister/userRegister"
- 
+    "pages/userRegister/userRegister",
+    "pages/add/add"
+   
+    
   ],
   "window": {
     "backgroundTextStyle": "dark",

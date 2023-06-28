@@ -1,5 +1,5 @@
 <!--pages/setting/setting.wxml-->
-<view class="title">设置页面</view>
+<view class="title">设置</view>
 <view>
   <view class="button1"><button bindtap="gotoPageas">账户设置</button></view>
   <view class="button1"><button bindtap="gotoPageqs">限额设置</button></view>

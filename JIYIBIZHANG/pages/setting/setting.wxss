@@ -4,13 +4,10 @@
   font-size: xx-large;
   height: 100%;
   padding: 50rpx 0;
-  background-color:  rgb(90, 150, 245);
-
 }
 .button1{
   padding: 30rpx 0;
 }
 .button2{
   padding: 100rpx 0;
-  /* color: red; */
 }

@@ -4,7 +4,7 @@
 <form bindsubmit="userLogin">
   <view class="input1">
     <text style="display: inline-flex;">账号：</text>
-    <input name="username" type="number" maxlength="32" style="display: inline-flex;" />
+    <input name="username" type="text" maxlength="32" style="display: inline-flex;" />
   </view>
   <view class="input1">
     <text style="display: inline-flex;">密码：</text>

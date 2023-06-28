@@ -1,4 +1,4 @@
 <!--index.wxml-->
 <view class="title"><text>欢迎使用记一笔账</text></view>
-<view class="input1"><button bindtap="gotoPageul">登陆</button></view>
+<view class="input1"><button bindtap="gotoPageul">登录</button></view>
 <view class="input1"><button bindtap="gotoPageur">注册</button></view>

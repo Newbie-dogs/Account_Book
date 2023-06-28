@@ -25,7 +25,7 @@ Page({
 	// 增加一条记录
 	addItem: function(){
     console.log('增加一条记录');
-    
+    wx.navigateTo({url: '../add/add'})
   },
   
   //  点击明细条目弹窗显示详情
@@ -57,15 +57,15 @@ Page({
             .catch(err=>{console.log("failed!")})
           _this.setData({showModal:false})
           tb.where({username:app.globalData.username}).get().then(res=>{
-            _this.setData({datalist:res.data})
+            _this.setData({datalist:res.data});
+            (function (){
+              var tempincome = 0, temppayment = 0;
+              for(var i=0;i<res.data.length;i++)
+                if(res.data[i].is_payment) temppayment+=res.data[i].money;
+                else tempincome+=res.data[i].money;
+              _this.setData({totalincome: tempincome,totalpayment: temppayment})
+            })();
           }).catch(err=>{console.log('查询记录失败')});
-          (function (){
-            var tempincome = 0,temppayment = 0;
-            for(var i=0;i<_this.data.datalist.length;i++)
-              if(_this.data.datalist[i].is_payment) temppayment+=_this.data.datalist[i].money;
-              else tempincome+=_this.data.datalist[i].money;
-            _this.setData({totalincome: tempincome,totalpayment: temppayment})
-          })()
         }
       }
     })
@@ -78,43 +78,43 @@ Page({
 		setTimeout(function(){_this.setData({triggered: false,})},1000);
 		// 重新获取数据
 	  tb.where({username:app.globalData.username}).get().then(res=>{
-		  _this.setData({datalist:res.data})
+		  _this.setData({datalist:res.data});
+      (function (){
+        var tempincome = 0, temppayment = 0;
+        for(var i=0;i<res.data.length;i++)
+          if(res.data[i].is_payment) temppayment+=res.data[i].money;
+          else tempincome+=res.data[i].money;
+        _this.setData({totalincome: tempincome,totalpayment: temppayment})
+      })();
     }).catch(err=>{console.log('查询记录失败')});
-    (function (){
-      var tempincome = 0, temppayment = 0;
-      for(var i=0;i<_this.data.datalist.length;i++)
-        if(_this.data.datalist[i].is_payment) temppayment+=_this.data.datalist[i].money;
-        else tempincome+=_this.data.datalist[i].money;
-      _this.setData({totalincome: tempincome,totalpayment: temppayment})
-    })()
 	},
 
 /*生命周期函数--监听页面加载*/onLoad(options) {},
-/*生命周期函数--监听页面初次渲染完成*/onReady() {
+/*生命周期函数--监听页面初次渲染完成onReady() {
   var _this = this;
 	tb.where({username:app.globalData.username}).get().then(res=>{
-		_this.setData({datalist:res.data})
+		_this.setData({datalist:res.data});
+    (function (){
+      var tempincome = 0, temppayment = 0;
+      for(var i=0;i<res.data.length;i++)
+        if(res.data[i].is_payment) temppayment+=res.data[i].money;
+        else tempincome+=res.data[i].money;
+      _this.setData({totalincome: tempincome,totalpayment: temppayment})
+    })();
   }).catch(err=>{console.log('查询记录失败')});
-  (function (){
-    var tempincome = 0, temppayment = 0;
-    for(var i=0;i<_this.data.datalist.length;i++)
-      if(_this.data.datalist[i].is_payment) temppayment+=_this.data.datalist[i].money;
-      else tempincome+=_this.data.datalist[i].money;
-    _this.setData({totalincome: tempincome,totalpayment: temppayment})
-  })()
 },
 /*生命周期函数--监听页面显示*/onShow() {
   var _this = this;
   tb.where({username:app.globalData.username}).get().then(res=>{
-    _this.setData({datalist:res.data})
+    _this.setData({datalist:res.data});
+    (function (){
+      var tempincome = 0, temppayment = 0;
+      for(var i=0;i<res.data.length;i++)
+        if(res.data[i].is_payment) temppayment+=res.data[i].money;
+        else tempincome+=res.data[i].money;
+      _this.setData({totalincome: tempincome,totalpayment: temppayment})
+    })();
   }).catch(err=>{console.log('查询记录失败')});
-  (function (){
-    var tempincome = 0, temppayment = 0;
-    for(var i=0;i<_this.data.datalist.length;i++)
-      if(_this.data.datalist[i].is_payment) temppayment+=_this.data.datalist[i].money;
-      else tempincome+=_this.data.datalist[i].money;
-    _this.setData({totalincome: tempincome,totalpayment: temppayment})
-  })()
 },
 /*生命周期函数--监听页面隐藏*/onHide() {},
 /*生命周期函数--监听页面卸载*/onUnload() {},

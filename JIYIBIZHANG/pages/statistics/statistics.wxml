@@ -1,10 +1,16 @@
-<!--pages/statistics/statistics.wxml-->
-<view class="title">统计界面</view>
-<view class="button1">
-<text>收</text>
-<switch></switch>
-<text>支</text>
+<view class="wrap">
+<view class="btn {{type=='outcome' ? 'on' : ''}}" data-type="outcome" bindtap="changeType">支出</view>
+<view class="btn {{type=='income' ? 'on' : ''}}" data-type="income" bindtap="changeType">收入</view>
 </view>
-<view class="echarts">
-<ec-canvas  id="echarts" canvas-id="echarts" ec="{{ec}}"></ec-canvas>
+//折线图
+<view class="my-chart">
+<ec-canvas id="mychart-dom" canvas-id="mychart" ec="{{Ec}}"></ec-canvas>
+</view>
+//柱状图
+<view class="my-secchart">
+<ec-canvas id="mysecchart-dom" canvas-id="mysecchart" ec="{{secEc}}"></ec-canvas>
+</view>
+//饼状图
+<view class="my-thdchart">
+<ec-canvas id="mythdchart-dom" canvas-id="mythdthchart" ec="{{thdEc}}"></ec-canvas>
 </view>
