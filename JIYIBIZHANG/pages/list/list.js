@@ -28,6 +28,28 @@ Page({
     wx.navigateTo({url: '../add/add'})
   },
   
+  //刷新数据函数
+  refreshData: function(){
+    let _this = this;
+    tb.where({username:app.globalData.username}).get().then(res=>{
+      var tmp = res;
+      tmp.data.sort(function(a,b){
+        var dateA = new Date(a.date);
+        var dateB = new Date(b.date);
+        if(dateA < dateB) return 1;
+        else return -1;
+      });
+      _this.setData({datalist:tmp.data});
+      (function (){
+        var tempincome = 0, temppayment = 0;
+        for(var i=0;i<res.data.length;i++)
+          if(res.data[i].is_payment) temppayment+=res.data[i].money;
+          else tempincome+=res.data[i].money;
+        _this.setData({totalincome: tempincome,totalpayment: temppayment})
+      })();
+    }).catch(err=>{console.log('查询记录失败')});
+  },
+
   //  点击明细条目弹窗显示详情
   showDetails: function(e){
     this.setData({
@@ -52,70 +74,27 @@ Page({
       complete: (res) => {
         if (res.cancel) {}
         if (res.confirm) {
-          var _this = this;
-          tb.doc(_this.data.accountDetails._id).remove().then(res=>{console.log("deleted!")})
+          tb.doc(this.data.accountDetails._id).remove().then(res=>{console.log("deleted!")})
             .catch(err=>{console.log("failed!")})
           _this.setData({showModal:false})
-          tb.where({username:app.globalData.username}).get().then(res=>{
-            _this.setData({datalist:res.data});
-            (function (){
-              var tempincome = 0, temppayment = 0;
-              for(var i=0;i<res.data.length;i++)
-                if(res.data[i].is_payment) temppayment+=res.data[i].money;
-                else tempincome+=res.data[i].money;
-              _this.setData({totalincome: tempincome,totalpayment: temppayment})
-            })();
-          }).catch(err=>{console.log('查询记录失败')});
+          this.refreshData();
         }
       }
     })
   },
-  
+
 	//  监听用户下拉刷新
 	onScrollRefresh: function () {
     var _this = this;
     // 延时1秒
 		setTimeout(function(){_this.setData({triggered: false,})},1000);
-		// 重新获取数据
-	  tb.where({username:app.globalData.username}).get().then(res=>{
-		  _this.setData({datalist:res.data});
-      (function (){
-        var tempincome = 0, temppayment = 0;
-        for(var i=0;i<res.data.length;i++)
-          if(res.data[i].is_payment) temppayment+=res.data[i].money;
-          else tempincome+=res.data[i].money;
-        _this.setData({totalincome: tempincome,totalpayment: temppayment})
-      })();
-    }).catch(err=>{console.log('查询记录失败')});
+    // 重新获取数据
+    this.refreshData();
 	},
 
 /*生命周期函数--监听页面加载*/onLoad(options) {},
-/*生命周期函数--监听页面初次渲染完成onReady() {
-  var _this = this;
-	tb.where({username:app.globalData.username}).get().then(res=>{
-		_this.setData({datalist:res.data});
-    (function (){
-      var tempincome = 0, temppayment = 0;
-      for(var i=0;i<res.data.length;i++)
-        if(res.data[i].is_payment) temppayment+=res.data[i].money;
-        else tempincome+=res.data[i].money;
-      _this.setData({totalincome: tempincome,totalpayment: temppayment})
-    })();
-  }).catch(err=>{console.log('查询记录失败')});
-},
-/*生命周期函数--监听页面显示*/onShow() {
-  var _this = this;
-  tb.where({username:app.globalData.username}).get().then(res=>{
-    _this.setData({datalist:res.data});
-    (function (){
-      var tempincome = 0, temppayment = 0;
-      for(var i=0;i<res.data.length;i++)
-        if(res.data[i].is_payment) temppayment+=res.data[i].money;
-        else tempincome+=res.data[i].money;
-      _this.setData({totalincome: tempincome,totalpayment: temppayment})
-    })();
-  }).catch(err=>{console.log('查询记录失败')});
-},
+/*生命周期函数--监听页面初次渲染完成*/onReady() {},
+/*生命周期函数--监听页面显示*/onShow() {this.refreshData();},
 /*生命周期函数--监听页面隐藏*/onHide() {},
 /*生命周期函数--监听页面卸载*/onUnload() {},
 /*页面相关事件处理函数--监听用户下拉动作*/onPullDownRefresh() {},
