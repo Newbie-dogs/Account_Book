@@ -1,4 +1,7 @@
 <!--pages/userLogin/userLogin.wxml-->
+<view class="bg" >
+    <image  src="../../icons/beijing2.jpg" mode="widthFix" ></image>
+</view>
 <view class="title"><text>登录</text></view>
 <!-- 表单 -->
 <form bindsubmit="userLogin">
@@ -14,3 +17,6 @@
     <button form-type="submit">原神，启动！</button>
   </view>
 </form>
+<view class="bg" >
+    <image  src="../../icons/beijing2.jpg" mode="widthFix" ></image>
+</view>

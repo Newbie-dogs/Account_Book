@@ -1,3 +1,4 @@
+// import { decodeBase64 } from 'XrFrame/kanata/lib/index';
 import * as echarts from '../../ec-canvas/echarts'
 const app = getApp();
 const db=wx.cloud.database();
@@ -12,10 +13,16 @@ Page({
       income:[],
       outcome:[],
       incometype:[],
-      outcometype:[]
+      outcometype:[],
     },
     payment:[],
     isReady: false,
+  },
+  getLaterPayment: function(){
+    
+    tb.where({username:app.globalData.username}).orderBy("date","desc").get().then(res=>{
+
+    })
   },
  
   getPayment: function(){
@@ -81,7 +88,7 @@ Page({
     //获取到组件
     this.Component=this.selectComponent('#mychart-dom')
     this.secComponent=this.selectComponent('#mysecchart-dom')
-    this.thdComponent=this.selectComponent('#mythdchart-dom')
+    // this.thdComponent=this.selectComponent('#mythdchart-dom')
 
     let _payment = this.data.payment;
     setTimeout(()=>{
@@ -95,7 +102,7 @@ Page({
       })
       this.init([_payment[0], _payment[1], _payment[2], _payment[3], _payment[4], _payment[5], _payment[6],_payment[7]],["服务","餐饮","娱乐","购物","运动","交通","教育","其他"])     
       this.init2([_payment[0], _payment[1], _payment[2], _payment[3], _payment[4], _payment[5], _payment[6],_payment[7]],["服务","餐饮","娱乐","购物","运动","交通","教育","其他"])
-      this.init3([_payment[0], _payment[1], _payment[2], _payment[3], _payment[4], _payment[5], _payment[6],_payment[7]],["服务","餐饮","娱乐","购物","运动","交通","教育","其他"])
+      // this.init3([_payment[0], _payment[1], _payment[2], _payment[3], _payment[4], _payment[5], _payment[6],_payment[7]],["服务","餐饮","娱乐","购物","运动","交通","教育","其他"])
     },1000)
   },
  
@@ -125,77 +132,80 @@ Page({
       return secchart
     })
   },
-  init3(optionData,optionDatatype){//用来手动初始化
-    this.thdComponent.init((canvas,width,height,dpr)=>{
-      let thdchart =echarts.init(canvas,null,{
-        width: width,
-        height: height,
-        devicePixelRatio: dpr
-      })
-      let option3 =getOption3(optionData,optionDatatype)
-      thdchart.setOption(option3)
-      this.thdchart=thdchart//将我们的图表实例绑定到this上，方便我们在其他函数中访问
-      return thdchart
-    })
-  },
+  // init3(optionData,optionDatatype){//用来手动初始化
+  //   this.thdComponent.init((canvas,width,height,dpr)=>{
+  //     let thdchart =echarts.init(canvas,null,{
+  //       width: width,
+  //       height: height,
+  //       devicePixelRatio: dpr
+  //     })
+  //     let option3 =getOption3(optionData,optionDatatype)
+  //     thdchart.setOption(option3)
+  //     this.thdchart=thdchart//将我们的图表实例绑定到this上，方便我们在其他函数中访问
+  //     return thdchart
+  //   })
+  // },
 
   onReady: function(){this.setData({isReady: true});},
   refreshData: function(){
-    new Promise((resolve,reject)=>{
-      this.getPayment();
-      console.log('getPayment()');
-    }).then(()=>{
-      let _payment = this.data.payment;
-      this.setData({
-        chartOptionData : {
-          outcome :[_payment[0], _payment[1], _payment[2], _payment[3], _payment[4], _payment[5], _payment[6], _payment[7]],
-          income :[_payment[8],_payment[9],_payment[10]],
-          outcometype:["服务","餐饮","娱乐","购物","运动","交通","教育","其他"],
-          incometype:["转账","红包","工资"]
-        }
-      },(function(){
-        if(this.data.type == "income"){
-          let option =getOption(this.data.chartOptionData.income,this.data.chartOptionData.incometype);
-          let option2 =getOption2(this.data.chartOptionData.income,this.data.chartOptionData.incometype);
-          let option3 =getOption3(this.data.chartOptionData.income,this.data.chartOptionData.incometype);
-          this.chart.setOption(option);
-          this.secchart.setOption(option2);
-          this.thdchart.setOption(option3);
-        }
-        else{
-          let option =getOption(this.data.chartOptionData.outcome,this.data.chartOptionData.outcometype);
-          let option2 =getOption2(this.data.chartOptionData.outcome,this.data.chartOptionData.outcometype);
-          let option3 =getOption3(this.data.chartOptionData.outcome,this.data.chartOptionData.outcometype);
-          this.chart.setOption(option);
-          this.secchart.setOption(option2);
-          this.thdchart.setOption(option3);
-        }
-      }))
+    this.getPayment();
+    let _payment = this.data.payment;
+    this.setData({
+      chartOptionData : {
+        outcome :[_payment[0], _payment[1], _payment[2], _payment[3], _payment[4], _payment[5], _payment[6], _payment[7]],
+        income :[_payment[8],_payment[9],_payment[10]],
+        outcometype:["服务","餐饮","娱乐","购物","运动","交通","教育","其他"],
+        incometype:["转账","红包","工资"]
+      }
     })
-  },
-
-  onShow(){if(this.data.isReady) this.refreshData();},
-
-  changeType(e){//切换效果
-    this.setData({type: e.currentTarget.dataset.type});
-    if(e.currentTarget.dataset.type == "income"){
+    if(this.data.type == "income"){
       let option =getOption(this.data.chartOptionData.income,this.data.chartOptionData.incometype);
       let option2 =getOption2(this.data.chartOptionData.income,this.data.chartOptionData.incometype);
-      let option3 =getOption3(this.data.chartOptionData.income,this.data.chartOptionData.incometype);
+      // let option3 =getOption3(this.data.chartOptionData.income,this.data.chartOptionData.incometype);
       this.chart.setOption(option);
       this.secchart.setOption(option2);
-      this.thdchart.setOption(option3);
+      // this.thdchart.setOption(option3);
     }
     else{
       let option =getOption(this.data.chartOptionData.outcome,this.data.chartOptionData.outcometype);
       let option2 =getOption2(this.data.chartOptionData.outcome,this.data.chartOptionData.outcometype);
-      let option3 =getOption3(this.data.chartOptionData.outcome,this.data.chartOptionData.outcometype);
+      // let option3 =getOption3(this.data.chartOptionData.outcome,this.data.chartOptionData.outcometype);
       this.chart.setOption(option);
       this.secchart.setOption(option2);
-      this.thdchart.setOption(option3);
+      // this.thdchart.setOption(option3);
+    }
+  },
+
+  onShow(){
+    if(this.data.isReady)
+     setTimeout(() => {
+       this.refreshData();
+     }, 500); 
+    
+  },
+
+  changeType(e){//切换效果
+    this.setData({type: e.currentTarget.dataset.type});
+    if(this.data.type == "income"){
+      let option =getOption(this.data.chartOptionData.income,this.data.chartOptionData.incometype);
+      let option2 =getOption2(this.data.chartOptionData.income,this.data.chartOptionData.incometype);
+      // let option3 =getOption3(this.data.chartOptionData.income,this.data.chartOptionData.incometype);
+      this.chart.setOption(option);
+      this.secchart.setOption(option2);
+      // this.thdchart.setOption(option3);
+    }
+    else{
+      let option =getOption(this.data.chartOptionData.outcome,this.data.chartOptionData.outcometype);
+      let option2 =getOption2(this.data.chartOptionData.outcome,this.data.chartOptionData.outcometype);
+      // let option3 =getOption3(this.data.chartOptionData.outcome,this.data.chartOptionData.outcometype);
+      this.chart.setOption(option);
+      this.secchart.setOption(option2);
+      // this.thdchart.setOption(option3);
     }
   }
 })
+
+
 
 function getOption(data,datatype){
   return{
@@ -209,8 +219,21 @@ function getOption(data,datatype){
   series: [
     {
       data: data,
-      type: 'line'
+      type: 'line',
+      itemStyle: {
+        normal: {
+          label: {
+            show: true, //开启显示数值
+            position: 'top', //数值在上方显示
+            textStyle: {  //数值样式
+              color: 'green',   //字体颜色
+              fontSize: 14  //字体大小
+            }
+          }
+        }
+      }
     }
+    
   ]
   }
 }
@@ -227,46 +250,59 @@ function getOption2(data,datatype){
     series: [
       {
         data: data,
-        type: 'bar'
+        type: 'bar',
+        itemStyle: {
+          normal: {
+            label: {
+              show: true, //开启显示数值
+              position: 'top', //数值在上方显示
+              textStyle: {  //数值样式
+                color: 'green',   //字体颜色
+                fontSize: 14  //字体大小
+              }
+            }
+          }
+        }
       }
     ]
   };
 }
-function getOption3(data,datatype){
-  var tmp = new Array(data.length);
-  for(var i = 0;i < data.len;i++)
-    tmp[i]={value:data[i],name:datatype[i]};
-  return{
-    title: {
-      text: '构成',
-      left: 'center'
-    },
-    tooltip: {
-     trigger: 'item'
-    },
-    legend: {
-     orient: 'vertical',
-     left: 'left'
-   },
-   series: [
-      {
-        name: 'Access From',
-        type: 'pie',
-        radius: '50%',
-        data: tmp,
-        /*data: [
-          {value:data,name:datatype}
-        ],*/
-        emphasis: {
-          itemStyle: {
-            shadowBlur: 10,
-            shadowOffsetX: 0,
-            shadowColor: 'rgba(0, 0, 0, 0.5)'
-          }
-        }
-      }
-    ] 
-  };
-}
+// function getOption3(data,datatype){
+//   var tmp = new Array(data.length);
+  
+//   for(var i = 0;i < data.len;i++)
+//     tmp[i]={value:data[i],name:datatype[i]};
+//   return{
+//     title: {
+//       text: '构成',
+//       left: 'center'
+//     },
+//     tooltip: {
+//      trigger: 'item'
+//     },
+//     legend: {
+//      orient: 'vertical',
+//      left: 'left'
+//    },
+//    series: [
+//       {
+//         name: 'Access From',
+//         type: 'pie',
+//         radius: '50%',
+//         data: tmp,
+//         /*data: [
+//           {value:data,name:datatype}
+//         ],*/
+//         emphasis: {
+//           itemStyle: {
+//             shadowBlur: 10,
+//             shadowOffsetX: 0,
+//             shadowColor: 'rgba(0, 0, 0, 0.5)'
+//           }
+//         }
+//       }
+//     ] 
+//   };
+// }
 
 

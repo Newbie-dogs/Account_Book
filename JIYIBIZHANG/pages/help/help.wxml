@@ -1,2 +1,30 @@
 <!--pages/help/help.wxml-->
-<text>帮助手册</text>
+<view class="bg" >
+    <image  src="../../icons/beijing2.jpg" mode="widthFix" ></image>
+</view>
+<view class="title">帮助手册</view>
+<view class="subtitle">简介</view> 
+<view class="body">记一笔账程序是一款帮助您记录支出和理性消费的工具。帮助您更方便快捷的记录每一笔支出和收入，并通过设置限额达到理性消费的目的。</view>
+<view class="bg" >
+    <image  src="../../icons/beijing2.jpg" mode="widthFix" ></image>
+</view>
+<view class="subtitle"> 记账和统计</view>
+<view class="body">1、记账： 在明细界面上找到右下角的添加图标即可跳转到“加一笔”界面，输入记账金额、类型、时间、心情、备注
+，点击“记录”按钮，这笔账将被创建并显示在菜单中。</view>
+<view class="body">2、汇总:  在明细界面头顶显示总支出和总收入，方便用户清晰的了解到自己总的消费记录</view>
+<view class="body">3、统计： 在统计界面，通过点击支出和收入按钮，可以直观的看到每一个类型的具体支出和收入</view>
+<view class="subtitle">设置限额</view> 
+<view class="body">1、限额设置： 在设置界面，点击限额设置，可以设置每周、每月、每年的理想限额</view>
+<view class="body">2、提醒： 当支出达到限额的一半和百分之九十时，会弹出提示框提醒用户理想消费</view>
+<view class="subtitle"> 设置账号</view>
+<view class="body">1、查看: 在设置界面，点击账户设置，可以查看用户自己的个人账户信息</view>
+<view class="body">2、修改: 在设置界面，点击账户设置，用户可以点击修改，修改昵称和密码</view>
+<view>
+    <text decode="{{true}}">&ensp;&ensp;&ensp;&ensp;</text>
+</view><view>
+    <text decode="{{true}}">&ensp;&ensp;&ensp;&ensp;</text>
+</view><view>
+    <text decode="{{true}}">&ensp;&ensp;&ensp;&ensp;</text>
+</view>
+
+

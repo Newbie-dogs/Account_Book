@@ -1,4 +1,7 @@
 <!--明细页面-->
+<view class="bg" >
+    <image  src="../../icons/beijing2.jpg" mode="widthFix" ></image>
+</view>
 <view class="TotalAccount" style="left: 35rpx;">
 	<text>总收入：￥{{totalincome}}</text>
 </view>
@@ -8,6 +11,9 @@
 </view>
 <!-- 明细列表，用一个scroll-view包装 -->
 <view style="position: relative;margin-top: 150rpx;left: 25rpx;width: 700rpx;">
+<view class="bg" >
+    <image  src="../../icons/beijing2.jpg" mode="widthFix" ></image>
+</view>
 	<scroll-view scroll-y="ture" style="height: 1000rpx;"
 		refresher-enabled="true" refresher-triggered="{{triggered}}" bindrefresherrefresh="onScrollRefresh">
 		<!-- 遍历查询到的数组进行明细显示 -->
@@ -24,6 +30,13 @@
 		</view>
 		<view style="border-top: 1rpx solid #949494;"></view>
 	</scroll-view>
+<view class="bg" >
+    <image  src="../../icons/beijing2.jpg" mode="widthFix" ></image>
+</view>
+</view>
+
+<view class="bg" >
+    <image  src="../../icons/beijing2.jpg" mode="widthFix" ></image>
 </view>
 <!-- 增加记录按钮 -->
 <view class="addImage" bindtap="addItem">

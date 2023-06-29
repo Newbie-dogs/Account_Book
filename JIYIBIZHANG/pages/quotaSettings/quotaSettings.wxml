@@ -1,4 +1,7 @@
 <!--pages/quotaSettings/quotaSettings.wxml-->
+<view class="bg" >
+    <image  src="../../icons/beijing2.jpg" mode="widthFix" ></image>
+</view>
 <view class="title">设置限额，理智消费！</view>
 
 <view class="title1">
@@ -15,4 +18,7 @@
   <text style="display: inline-flex;">每年限额：</text>
   <input style="display: inline-flex;" type="number" placeholder="{{showyear}}" bindblur="yearTypeIn"/>
   <image class="change" src="../../icons/修改.png" bindtap="changeYear" /> 
+</view>
+<view class="bg" >
+    <image  src="../../icons/beijing2.jpg" mode="widthFix" ></image>
 </view>

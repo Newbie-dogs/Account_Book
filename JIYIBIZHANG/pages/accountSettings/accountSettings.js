@@ -50,7 +50,7 @@ Page({
         }).catch(err=>{console.log(err)});
         tb.doc(app.globalData.id).update({data:{password: e.detail.value.newPassword}})
           .then(res=>{
-            _this.setData({password: e.detail.value.newPassword});
+            _this.setData({password: e.detail.value.newPassword,showModal: false});
             app.globalData.password = e.detail.value.newPassword;
             wx.showModal({title: '修改成功！',showCancel: false,});
           }).catch(err=>{
@@ -64,4 +64,3 @@ Page({
   }
 
 })
-

@@ -1,4 +1,7 @@
 <!--pages/accountSettings/accountSettings.wxml-->
+<view class="bg" >
+    <image  src="../../icons/beijing2.jpg" mode="widthFix" ></image>
+</view>
 <view class="title">账户信息</view>
 <view class="title1">
   <text style="display: inline-flex;">账号：{{username}}</text>
@@ -12,6 +15,9 @@
   <text style="display: inline-flex;">密码：</text>
   <input style="display: inline-flex;" password="true" value="{{password}}" disabled="true"/>
   <image class="change" src="../../icons/修改.png" bindtap="changePassword" /> 
+</view>
+<view class="bg" >
+    <image  src="../../icons/beijing2.jpg" mode="widthFix" ></image>
 </view>
 <!-- 弹窗蒙版 -->
 <view class="model" catchtouchmove='preventTouchMove' wx:if='{{showModal}}'></view>

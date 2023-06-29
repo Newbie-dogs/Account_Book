@@ -7,8 +7,9 @@
 }
 .title1{
   text-align:justify;
-  font-size: large;
+  font-size: larger;
   padding: 40rpx 0;
+  margin-left: 10%;
 }
 .button{
   text-align: center;
@@ -91,3 +92,17 @@
   padding: 25rpx;
   color: black;
 }
+.bg{
+  position: fixed;
+  width: 100%;
+  height:1200rpx;
+  background-size:auto;
+  z-index:-1;
+  }
+  image{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top:0px;
+    bottom: 0px;
+  }

@@ -1,12 +1,30 @@
 /**index.wxss**/
+page{
+  height: 100%;
+}
 .input1{
   text-align: center;
   padding: 30rpx 0;
 }
 .title{
   text-align: center;
-  font-size: large;
+  font-size: xx-large;
   padding: 50rpx 0;
   size: initial;
  
 }
+.bg{
+  position: fixed;
+  width: 100%;
+  height:1200rpx;
+  background-size:auto;
+  z-index:-1;
+  }
+  image{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top:0px;
+    bottom: 0px;
+  }
+  

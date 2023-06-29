@@ -1,4 +1,7 @@
 <!--pages/userRegister/userRegister.wxml-->
+<view class="bg" >
+    <image  src="../../icons/beijing2.jpg" mode="widthFix" ></image>
+</view>
 <view class="title">先注册一个账号吧！</view>
 <form bindsubmit="userRegister">
   <view class="input1">
@@ -21,3 +24,6 @@
     <button form-type="submit">注册</button>
   </view>
 </form>
+<view class="bg" >
+    <image  src="../../icons/beijing2.jpg" mode="widthFix" ></image>
+</view>

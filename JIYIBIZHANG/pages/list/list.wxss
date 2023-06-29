@@ -7,7 +7,8 @@
 	border: 1rpx solid #000000;
 	border-radius: 10rpx;
 	text-align: center;
-	display: inline-flex;
+  display: inline-flex;
+  font-weight: bold;
 }
 /* 明细样式 */
 .details{
@@ -107,3 +108,18 @@
   padding: 25rpx;
   color: white;
 }
+.bg{
+  position: fixed;
+  width: 100%;
+  height:1200rpx;
+  background-size:auto;
+  z-index:-1;
+  }
+  image{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top:0px;
+    bottom: 0px;
+  }
+  

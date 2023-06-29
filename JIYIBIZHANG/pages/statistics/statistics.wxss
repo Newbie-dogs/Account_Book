@@ -20,3 +20,17 @@
   color: lightseagreen;
   border-bottom:1px solid lightseagreen;
 }
+.bg{
+  position: fixed;
+  width: 100%;
+  height:1200rpx;
+  background-size:auto;
+  z-index:-1;
+  }
+  image{
+    width: 100%;
+    height: 100%;
+    position: absolute;
+    top:0px;
+    bottom: 0px;
+  }
