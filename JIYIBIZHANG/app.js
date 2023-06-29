@@ -2,7 +2,10 @@
 App({
   
 	globalData: {
-		username:'',
+    username: '',
+    nickname: '',
+    password: '',
+    id: '',
 	},
 
   onLaunch(){//初始化云环境
