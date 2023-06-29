@@ -2,15 +2,15 @@
 <view class="btn {{type=='outcome' ? 'on' : ''}}" data-type="outcome" bindtap="changeType">支出</view>
 <view class="btn {{type=='income' ? 'on' : ''}}" data-type="income" bindtap="changeType">收入</view>
 </view>
-//折线图
+<!-- 折线图 -->
 <view class="my-chart">
 <ec-canvas id="mychart-dom" canvas-id="mychart" ec="{{Ec}}"></ec-canvas>
 </view>
-//柱状图
-<view class="my-secchart">
+<!-- //柱状图 -->
+<view class="my-chart">
 <ec-canvas id="mysecchart-dom" canvas-id="mysecchart" ec="{{secEc}}"></ec-canvas>
 </view>
-//饼状图
-<view class="my-thdchart">
-<ec-canvas id="mythdchart-dom" canvas-id="mythdthchart" ec="{{thdEc}}"></ec-canvas>
+<!-- //饼状图 -->
+<view class="my-chart">
+<ec-canvas id="mythdchart-dom" canvas-id="mythdchart" ec="{{thdEc}}"></ec-canvas>
 </view>

@@ -20,6 +20,9 @@ Page({
         })
       else if(res.data[0].password == e.detail.value.password){
         app.globalData.username = res.data[0].username,
+        app.globalData.nickname = res.data[0].nickname,
+        app.globalData.password = res.data[0].password,
+        app.globalData.id = res.data[0]._id,
         wx.switchTab({url: '../list/list'})
       }else wx.showModal({
         title: '提示',
