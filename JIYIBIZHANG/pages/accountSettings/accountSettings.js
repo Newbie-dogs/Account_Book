@@ -1,66 +1,67 @@
 // pages/accountSettings/accountSettings.js
+const app = getApp();
+const db = wx.cloud.database();
+const tb = db.collection("User");
 Page({
-
-  /**
-   * 页面的初始数据
-   */
+  
   data: {
-
+    username: "",
+    nickname: "",
+    password: "",
+    tempNickname: "",
+    showModal: false,
   },
 
-  /**
-   * 生命周期函数--监听页面加载
-   */
-  onLoad(options) {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面初次渲染完成
-   */
-  onReady() {
-
-  },
-
-  /**
-   * 生命周期函数--监听页面显示
-   */
   onShow() {
-
+    this.setData({
+      username: app.globalData.username,
+      nickname: app.globalData.nickname,
+      password: app.globalData.password,
+    });
   },
 
-  /**
-   * 生命周期函数--监听页面隐藏
-   */
-  onHide() {
-
+  nicknameTypeIn: function(e){this.setData({tempNickname: e.detail.value});},
+  changeNickname: function(){
+    var _this = this;
+    wx.showModal({
+      title: '确定要修改昵称吗？',
+      complete: (res) => {
+        if (res.confirm){
+          tb.doc(app.globalData.id).update({data: {nickname: _this.data.tempNickname}}).then(res=>{
+            _this.setData({nickname: _this.data.tempNickname});
+            app.globalData.nickname = _this.data.tempNickname;
+            wx.showModal({title: '更新成功！',showCancel: false,})
+          }).catch(err=>{
+            console.log(err);
+            wx.showModal({title: '修改失败，请重试！',showCancel: false});
+          })
+        }
+      }
+    })
   },
-
-  /**
-   * 生命周期函数--监听页面卸载
-   */
-  onUnload() {
-
-  },
-
-  /**
-   * 页面相关事件处理函数--监听用户下拉动作
-   */
-  onPullDownRefresh() {
-
-  },
-
-  /**
-   * 页面上拉触底事件的处理函数
-   */
-  onReachBottom() {
-
-  },
-
-  /**
-   * 用户点击右上角分享
-   */
-  onShareAppMessage() {
-
+  changePassword: function(){this.setData({showModal: true});},
+  clickBack: function(){this.setData({showModal:false});},
+  change: function(e){
+    if(e.detail.value.oldPassword == app.globalData.password){
+      if(e.detail.value.newPassword == e.detail.value.renewPassword){
+        let _this = this;
+        tb.doc(app.globalData.id).get().then(res=>{
+          console.log(res.data)
+        }).catch(err=>{console.log(err)});
+        tb.doc(app.globalData.id).update({data:{password: e.detail.value.newPassword}})
+          .then(res=>{
+            _this.setData({password: e.detail.value.newPassword});
+            app.globalData.password = e.detail.value.newPassword;
+            wx.showModal({title: '修改成功！',showCancel: false,});
+          }).catch(err=>{
+            console.log(err);
+            wx.showModal({title: '修改失败，请重试！',showCancel: false});
+          })
+      }
+      else wx.showModal({title: '两次输入密码不一致！',showCancel: false,});
+    }
+    else wx.showModal({title: '原密码不正确！',showCancel: false,});
   }
+
 })
+

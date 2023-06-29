@@ -1,14 +1,42 @@
 <!--pages/accountSettings/accountSettings.wxml-->
 <view class="title">账户信息</view>
 <view class="title1">
-  <text style="display: inline-flex;">账号：</text>
+  <text style="display: inline-flex;">账号：{{username}}</text>
 </view>
 <view class="title1">
-  <text style="display: inline-flex;">用户名：</text>
-  <button  style="width: 26%; display: inline-flex;" >修改</button>
+  <text style="display: inline-flex;">昵称：</text>
+  <input style="display: inline-flex;" type="text" placeholder="{{nickname}}" bindblur="nicknameTypeIn"/>
+  <image class="change" src="../../icons/修改.png" bindtap="changeNickname" /> 
 </view>
 <view class="title1">
   <text style="display: inline-flex;">密码：</text>
-  <button  style="width: 26%; display: inline-flex;" >修改</button>
+  <input style="display: inline-flex;" password="true" value="{{password}}" disabled="true"/>
+  <image class="change" src="../../icons/修改.png" bindtap="changePassword" /> 
 </view>
-
+<!-- 弹窗蒙版 -->
+<view class="model" catchtouchmove='preventTouchMove' wx:if='{{showModal}}'></view>
+<view class="modalDlg" catchtouchmove='preventTouchMove' wx:if='{{showModal}}'>
+  <view class='windowRow'>
+    <text class='modalTitle'>修改密码</text>
+    <view class='back' bindtap='clickBack'>
+			<image src="../../icons/关闭.png" class='modalClose'></image>
+		</view>
+  </view>
+  <form style="width: 100%;" class="wishPassword" bindsubmit="change">
+    <view>
+      <text style="display: inline-flex;">原密码</text>
+      <input name="oldPassword" style="width: 100%;border: 1rpx solid gray" class="wishInput" type="password" />
+    </view>
+    <view>
+      <text style="display: inline-flex;">新密码</text>
+      <input name="newPassword" style="width: 100%;border: 1rpx solid gray" class="wishInput" type="password" />
+    </view>
+    <view>
+      <text style="display: inline-flex;">确认密码</text>
+      <input name="renewPassword" style="width: 100%;border: 1rpx solid gray" class="wishInput" type="password" />
+    </view>
+    <view style="width:94%; margin-left:50rpx">
+      <button class="modalConfirm" form-type="submit">确定</button>
+    </view>
+  </form>
+</view>

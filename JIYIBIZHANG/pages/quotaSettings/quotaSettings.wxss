@@ -10,13 +10,23 @@
 }
 .title{
   text-align: center;
-  font-size: large;
+  font-size: x-large;
+  font-weight: bold;
   padding: 20rpx 0;
+  margin-left: 25rpx;
 }
 .title1{
-  text-align: center;
+  width: 90%;
+  text-align:justify;
   font-size: large;
-  padding: 20rpx 0;
-  size: initial;
- 
+  font-weight: lighter;
+  padding: 40rpx 0;
+  margin-left: 5%;
+}
+.change{
+  position: relative;
+  height: 50rpx;
+  width: 50rpx;
+  margin-left: 50rpx;
+  top: 8rpx;
 }
