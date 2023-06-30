@@ -1,4 +1,3 @@
-// import { decodeBase64 } from 'XrFrame/kanata/lib/index';
 import * as echarts from '../../ec-canvas/echarts'
 const app = getApp();
 const db=wx.cloud.database();
@@ -28,7 +27,6 @@ Page({
   },
   getLaterPayment: function(){
     tb.where({username:app.globalData.username}).orderBy("date","desc").get().then(res=>{
-      // console.log(res.data);
       var _nowtime = new Date();
       var nowtime = new Date(_nowtime.getFullYear(),_nowtime.getMonth(),_nowtime.getDate(),8);
       var i,j=0;
@@ -39,11 +37,6 @@ Page({
       for(i = 6;i>=0;i--){
         while(j<res.data.length){
           _nowtime = new Date(res.data[j].date);
-          // if(function(nowtime,_nowtime){
-          //   if(nowtime.getFullYear()!=_nowtime.getFullYear()) return false;
-          //   if(nowtime.getMonth()!=_nowtime.getMonth()) return false;
-          //   if(nowtime.getDate()!=_nowtime.getDate()) return false;return true;
-          // })
           if(this.check(nowtime,_nowtime))
             if(res.data[j].is_payment) this.data.daypayment[i]+=res.data[j].money;
             else this.data.dayincome[i]+=res.data[j].money;
@@ -134,7 +127,6 @@ Page({
           incometype:["转账","红包","工资"]
         }
       })
-      // this.init([_payment[0], _payment[1], _payment[2], _payment[3], _payment[4], _payment[5], _payment[6],_payment[7]],["服务","餐饮","娱乐","购物","运动","交通","教育","其他"])
       this.init([_daypayment[0], _daypayment[1], _daypayment[2], _daypayment[3], _daypayment[4], _daypayment[5], _daypayment[6]],[_daylist[0], _daylist[1], _daylist[2], _daylist[3], _daylist[4], _daylist[5], _daylist[6]])
       this.init2([_payment[0], _payment[1], _payment[2], _payment[3], _payment[4], _payment[5], _payment[6],_payment[7]],["服务","餐饮","娱乐","购物","运动","交通","教育","其他"])
     },1000)
@@ -183,18 +175,14 @@ Page({
     if(this.data.type == "income"){
       let option =getOption(this.data.dayincome,this.data.daylist);
       let option2 =getOption2(this.data.chartOptionData.income,this.data.chartOptionData.incometype);
-      // let option3 =getOption3(this.data.chartOptionData.income,this.data.chartOptionData.incometype);
       this.chart.setOption(option);
       this.secchart.setOption(option2);
-      // this.thdchart.setOption(option3);
     }
     else{
       let option =getOption(this.data.daypayment,this.data.daylist);
       let option2 =getOption2(this.data.chartOptionData.outcome,this.data.chartOptionData.outcometype);
-      // let option3 =getOption3(this.data.chartOptionData.outcome,this.data.chartOptionData.outcometype);
       this.chart.setOption(option);
       this.secchart.setOption(option2);
-      // this.thdchart.setOption(option3);
     }
   },
 
@@ -212,18 +200,14 @@ Page({
     if(this.data.type == "income"){
       let option =getOption(this.data.dayincome,this.data.daylist);
       let option2 =getOption2(this.data.chartOptionData.income,this.data.chartOptionData.incometype);
-      // let option3 =getOption3(this.data.chartOptionData.income,this.data.chartOptionData.incometype);
       this.chart.setOption(option);
       this.secchart.setOption(option2);
-      // this.thdchart.setOption(option3);
     }
     else{
       let option =getOption(this.data.daypayment,this.data.daylist);
       let option2 =getOption2(this.data.chartOptionData.outcome,this.data.chartOptionData.outcometype);
-      // let option3 =getOption3(this.data.chartOptionData.outcome,this.data.chartOptionData.outcometype);
       this.chart.setOption(option);
       this.secchart.setOption(option2);
-      // this.thdchart.setOption(option3);
     }
   }
 })
@@ -290,42 +274,4 @@ function getOption2(data,datatype){
     ]
   };
 }
-// function getOption3(data,datatype){
-//   var tmp = new Array(data.length);
-  
-//   for(var i = 0;i < data.len;i++)
-//     tmp[i]={value:data[i],name:datatype[i]};
-//   return{
-//     title: {
-//       text: '构成',
-//       left: 'center'
-//     },
-//     tooltip: {
-//      trigger: 'item'
-//     },
-//     legend: {
-//      orient: 'vertical',
-//      left: 'left'
-//    },
-//    series: [
-//       {
-//         name: 'Access From',
-//         type: 'pie',
-//         radius: '50%',
-//         data: tmp,
-//         /*data: [
-//           {value:data,name:datatype}
-//         ],*/
-//         emphasis: {
-//           itemStyle: {
-//             shadowBlur: 10,
-//             shadowOffsetX: 0,
-//             shadowColor: 'rgba(0, 0, 0, 0.5)'
-//           }
-//         }
-//       }
-//     ] 
-//   };
-// }
-
 
