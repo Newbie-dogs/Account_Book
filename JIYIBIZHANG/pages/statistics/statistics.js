@@ -17,12 +17,43 @@ Page({
     },
     payment:[],
     isReady: false,
+    daypayment:[7],
+    dayincome:[7],
+    daylist:[7]
+  },
+  check: function(a,b){
+    if(a.getFullYear()!=b.getFullYear()) return false;
+    if(a.getMonth()!=b.getMonth()) return false;
+    if(a.getDate()!=b.getDate()) return false;return true;
   },
   getLaterPayment: function(){
-    
     tb.where({username:app.globalData.username}).orderBy("date","desc").get().then(res=>{
-
-    })
+      // console.log(res.data);
+      var _nowtime = new Date();
+      var nowtime = new Date(_nowtime.getFullYear(),_nowtime.getMonth(),_nowtime.getDate(),8);
+      var i,j=0;
+      for(i=0;i<7;i++){
+        this.data.daypayment[i]=0;
+        this.data.dayincome[i]=0;
+      }
+      for(i = 6;i>=0;i--){
+        while(j<res.data.length){
+          _nowtime = new Date(res.data[j].date);
+          // if(function(nowtime,_nowtime){
+          //   if(nowtime.getFullYear()!=_nowtime.getFullYear()) return false;
+          //   if(nowtime.getMonth()!=_nowtime.getMonth()) return false;
+          //   if(nowtime.getDate()!=_nowtime.getDate()) return false;return true;
+          // })
+          if(this.check(nowtime,_nowtime))
+            if(res.data[j].is_payment) this.data.daypayment[i]+=res.data[j].money;
+            else this.data.dayincome[i]+=res.data[j].money;
+          else break;
+          j++;
+        }
+        this.data.daylist[i] = Number(nowtime.getMonth()+1).toString()+"."+nowtime.getDate().toString();
+        nowtime = new Date(nowtime-86400000);
+      }
+    }).catch(err=>{console.log(err,"getLaterPayment Failed!")})
   },
  
   getPayment: function(){
@@ -85,12 +116,15 @@ Page({
 
   onLoad() {
     this.getPayment();
+    this.getLaterPayment();
     //获取到组件
     this.Component=this.selectComponent('#mychart-dom')
     this.secComponent=this.selectComponent('#mysecchart-dom')
     // this.thdComponent=this.selectComponent('#mythdchart-dom')
 
     let _payment = this.data.payment;
+    let _daypayment = this.data.daypayment;
+    let _daylist = this.data.daylist;
     setTimeout(()=>{
       this.setData({
         chartOptionData : {
@@ -100,9 +134,9 @@ Page({
           incometype:["转账","红包","工资"]
         }
       })
-      this.init([_payment[0], _payment[1], _payment[2], _payment[3], _payment[4], _payment[5], _payment[6],_payment[7]],["服务","餐饮","娱乐","购物","运动","交通","教育","其他"])     
+      // this.init([_payment[0], _payment[1], _payment[2], _payment[3], _payment[4], _payment[5], _payment[6],_payment[7]],["服务","餐饮","娱乐","购物","运动","交通","教育","其他"])
+      this.init([_daypayment[0], _daypayment[1], _daypayment[2], _daypayment[3], _daypayment[4], _daypayment[5], _daypayment[6]],[_daylist[0], _daylist[1], _daylist[2], _daylist[3], _daylist[4], _daylist[5], _daylist[6]])
       this.init2([_payment[0], _payment[1], _payment[2], _payment[3], _payment[4], _payment[5], _payment[6],_payment[7]],["服务","餐饮","娱乐","购物","运动","交通","教育","其他"])
-      // this.init3([_payment[0], _payment[1], _payment[2], _payment[3], _payment[4], _payment[5], _payment[6],_payment[7]],["服务","餐饮","娱乐","购物","运动","交通","教育","其他"])
     },1000)
   },
  
@@ -132,23 +166,11 @@ Page({
       return secchart
     })
   },
-  // init3(optionData,optionDatatype){//用来手动初始化
-  //   this.thdComponent.init((canvas,width,height,dpr)=>{
-  //     let thdchart =echarts.init(canvas,null,{
-  //       width: width,
-  //       height: height,
-  //       devicePixelRatio: dpr
-  //     })
-  //     let option3 =getOption3(optionData,optionDatatype)
-  //     thdchart.setOption(option3)
-  //     this.thdchart=thdchart//将我们的图表实例绑定到this上，方便我们在其他函数中访问
-  //     return thdchart
-  //   })
-  // },
 
   onReady: function(){this.setData({isReady: true});},
   refreshData: function(){
     this.getPayment();
+    this.getLaterPayment();
     let _payment = this.data.payment;
     this.setData({
       chartOptionData : {
@@ -159,7 +181,7 @@ Page({
       }
     })
     if(this.data.type == "income"){
-      let option =getOption(this.data.chartOptionData.income,this.data.chartOptionData.incometype);
+      let option =getOption(this.data.dayincome,this.data.daylist);
       let option2 =getOption2(this.data.chartOptionData.income,this.data.chartOptionData.incometype);
       // let option3 =getOption3(this.data.chartOptionData.income,this.data.chartOptionData.incometype);
       this.chart.setOption(option);
@@ -167,7 +189,7 @@ Page({
       // this.thdchart.setOption(option3);
     }
     else{
-      let option =getOption(this.data.chartOptionData.outcome,this.data.chartOptionData.outcometype);
+      let option =getOption(this.data.daypayment,this.data.daylist);
       let option2 =getOption2(this.data.chartOptionData.outcome,this.data.chartOptionData.outcometype);
       // let option3 =getOption3(this.data.chartOptionData.outcome,this.data.chartOptionData.outcometype);
       this.chart.setOption(option);
@@ -182,12 +204,13 @@ Page({
        this.refreshData();
      }, 500); 
     
+     this.getLaterPayment();
   },
 
   changeType(e){//切换效果
     this.setData({type: e.currentTarget.dataset.type});
     if(this.data.type == "income"){
-      let option =getOption(this.data.chartOptionData.income,this.data.chartOptionData.incometype);
+      let option =getOption(this.data.dayincome,this.data.daylist);
       let option2 =getOption2(this.data.chartOptionData.income,this.data.chartOptionData.incometype);
       // let option3 =getOption3(this.data.chartOptionData.income,this.data.chartOptionData.incometype);
       this.chart.setOption(option);
@@ -195,7 +218,7 @@ Page({
       // this.thdchart.setOption(option3);
     }
     else{
-      let option =getOption(this.data.chartOptionData.outcome,this.data.chartOptionData.outcometype);
+      let option =getOption(this.data.daypayment,this.data.daylist);
       let option2 =getOption2(this.data.chartOptionData.outcome,this.data.chartOptionData.outcometype);
       // let option3 =getOption3(this.data.chartOptionData.outcome,this.data.chartOptionData.outcometype);
       this.chart.setOption(option);
