@@ -1,30 +1,27 @@
 /* pages/mingxi/mingxi.wxss */
 .TotalAccount{
 	position: fixed;
-	top: 50rpx;
+	top: 60rpx;
 	height: 120rpx;
 	width: 330rpx;
 	border: 1rpx solid #000000;
 	border-radius: 10rpx;
-	text-align: center;
-  display: inline-flex;
-  font-weight: bold;
 }
 /* 明细样式 */
 .details{
 	position: relative;
 	border-top: 1rpx solid #949494;
-	height: 150rpx;
+	height: 110rpx;
 }
 /* 明细图案样式 */
 .detailImage{
-	position: relative;
 	margin-top: 25rpx;
 	width: 60rpx;
 	height: 60rpx;
-	display: inline-block;
-	vertical-align:top;/*文字居中*/
-	/* float: left; */
+}
+.detailItem{
+  /* font-weight: bold; */
+  font-size: x-large;
 }
 /* 增加记录按钮样式 */
 .addImage{

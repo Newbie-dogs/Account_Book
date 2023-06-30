@@ -3,14 +3,24 @@
     <image  src="../../icons/beijing2.jpg" mode="widthFix" ></image>
 </view>
 <view class="TotalAccount" style="left: 35rpx;">
-	<text>总收入：￥{{totalincome}}</text>
+  <view style="position: relative;font-size: larger;margin-left: 50rpx;">
+	  <text>总收入：</text>
+  </view>
+  <view style="position: relative;font-size: x-large;margin-left: 50rpx;">
+	  <text>￥{{totalincome}}</text>
+  </view>
 </view>
 <view style="display: inline-flex; width: 20rpx;"></view>
 <view class="TotalAccount" style="right: 35rpx;">
-	<text>总支出：￥{{totalpayment}}</text>
+  <view style="position: relative;font-size: larger;margin-left: 50rpx;">
+	  <text>总支出：</text>
+  </view>
+  <view style="position: relative;font-size: x-large;margin-left: 50rpx;">
+	  <text>￥{{totalpayment}}</text>
+  </view>
 </view>
 <!-- 明细列表，用一个scroll-view包装 -->
-<view style="position: relative;margin-top: 150rpx;left: 25rpx;width: 700rpx;">
+<view style="position: relative;margin-top: 200rpx;left: 25rpx;width: 700rpx;">
 <view class="bg" >
     <image  src="../../icons/beijing2.jpg" mode="widthFix" ></image>
 </view>
@@ -19,13 +29,16 @@
 		<!-- 遍历查询到的数组进行明细显示 -->
 		<view wx:for="{{datalist}}">
 			<view class="details" bindtap="showDetails" data-res="{{item}}">
-				<image class="detailImage" src="../../icons/{{item.type}}.png"></image>
-				<text style="position: relative;margin-left: 20rpx;display: inline;" wx:if="{{item.is_payment}}">
-					- ￥{{item.money}}  date:{{item.date}}
-				</text>
-				<text style="position: relative;margin-left: 20rpx;display: inline;" wx:else>
-					+ ￥{{item.money}}  date:{{item.date}}
-				</text>
+				<view style="height: 60rpx;width: 60rpx;float: left;margin-top: 25rpx;">
+          <image class="detailImage" src="../../icons/{{item.type}}.png" />
+        </view>
+        <view style="margin-left: 100rpx;">
+		  		<text class="detailItem" wx:if="{{item.is_payment}}">－ ￥{{item.money}}</text>
+				  <text class="detailItem" wx:else                    >＋ ￥{{item.money}}</text>
+        </view>
+        <view style="margin-left: 100rpx;">
+          日期：{{item.date}}
+        </view>
 			</view>
 		</view>
 		<view style="border-top: 1rpx solid #949494;"></view>
